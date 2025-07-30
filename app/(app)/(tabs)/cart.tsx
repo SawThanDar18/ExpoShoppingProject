@@ -1,20 +1,32 @@
-import React from 'react';
-import { Dimensions, StyleSheet, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import LottieView from "lottie-react-native";
+import React from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 export default function cart() {
   return (
-    <SafeAreaView style={styles.container}>
-          <Text>Cart Screen</Text>
-        </SafeAreaView>
-  )
+    <View style={styles.container}>
+      <LottieView
+        autoPlay
+        style={{
+          width: 350,
+          height: 400,
+          backgroundColor: "transparent",
+        }}
+        source={
+          require("@/assets/images/shop/cart_empty.json")
+        }
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
-    minHeight: height,//fullscreen height
-  }
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+  },
 });

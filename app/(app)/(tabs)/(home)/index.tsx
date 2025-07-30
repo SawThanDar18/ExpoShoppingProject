@@ -138,6 +138,7 @@ export default function HomeScreen() {
             data={data[selectedCategory as keyof typeof products]}
             renderItem={({ item }) => <Product {...item} onCall={() => saveProductToRedux(item)}/>}
           />
+          <View style={{ marginBottom: 100 }}/>
         </View>
       </ScrollView>
     </SafeAreaView>
