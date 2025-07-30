@@ -52,6 +52,7 @@ export const products = {
       discount: 550.3,
       image: t1,
       favourite: false,
+      //description: "a long- or short-sleeved garment for the upper part of the body, usually lightweight and having a collar and a front opening. an undergarment of cotton, or other material, for the upper part of the body. a shirtwaist.", 
     },
     {
       id: 2,

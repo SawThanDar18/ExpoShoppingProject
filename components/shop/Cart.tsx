@@ -7,7 +7,7 @@ export default function Cart() {
     <View style={{ flexDirection: 'row'}}>
       <Ionicons name='cart-outline' size={30} color='black' />
       <View style={styles.container}>
-        <Text style={styles.badge}>13</Text>
+        <Text style={styles.badge}>0</Text>
       </View>
     </View>
   )
