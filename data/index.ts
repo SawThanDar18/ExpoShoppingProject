@@ -363,7 +363,6 @@ export const products = {
   ],
 };
 
-
 // export const products = [
 //   {
 //     id: 1,
@@ -922,3 +921,15 @@ export const selectItems = {
     { id: 6, name: "XXL", stock: true },
   ],
 };
+
+export const sample = [
+  { key: 1, image: c1 },
+  {
+    key: 2,
+    image: c2,
+  },
+  {
+    key: 3,
+    image: c3,
+  },
+];

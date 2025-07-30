@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function Cart() {
   return (
-    <View style={{ flexDirection: 'row', marginRight: 16 }}>
+    <View style={{ flexDirection: 'row'}}>
       <Ionicons name='cart-outline' size={30} color='black' />
       <View style={styles.container}>
         <Text style={styles.badge}>13</Text>

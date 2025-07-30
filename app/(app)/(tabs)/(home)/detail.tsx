@@ -1,27 +1,49 @@
 //import { useLocalSearchParams } from 'expo-router';
 import { useAppSelector } from "@/hooks/useRedux";
-import { Ionicons } from "@expo/vector-icons";
+import { Stack, useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  View
+} from "react-native";
+
+import Cart from "@/components/shop/Cart";
+import ViewPager from "@/components/shop/ViewPager";
 
 export default function DetailScreen() {
   // const { id } = useLocalSearchParams();
 
+  const router = useRouter();
+
   //redux
   const selector = useAppSelector((state) => state.products.product);
 
-  return(
+  return (
     <View>
-      <Ionicons name="arrow-back" size={20} color='black' />
-      <Text style={{marginHorizontal: 8}}>Home</Text>
+      <Stack.Screen
+        options={{
+          headerBackTitle: "Home",
+          headerTitle: "Product Detail",
+          headerTintColor: "black",
+          headerStyle: { backgroundColor: "white" },
+          headerRight: () => (
+            <Pressable onPress={() => router.navigate("/cart")}>
+              <Cart />
+            </Pressable>
+          ),
+        }}
+      />
+      <ViewPager />
+      
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: "space-between", 
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
   },
 });

@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 16,
+    marginRight: 16
   },
   image: {
     width: 50,
