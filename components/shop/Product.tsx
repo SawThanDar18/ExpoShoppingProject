@@ -1,11 +1,11 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 
 type ProductProps = {
@@ -18,6 +18,7 @@ type ProductProps = {
   discount: number;
   image: any;
   favourite: boolean;
+  onCall: () => void;
 };
 
 export default function Product({
@@ -30,10 +31,11 @@ export default function Product({
   discount,
   image,
   favourite,
+  onCall
 }: ProductProps) {
   return (
     <View style={styles.container}>
-      <Pressable>
+      <Pressable onPress={onCall}>
         <ImageBackground
           source={image}
           style={styles.imageView}

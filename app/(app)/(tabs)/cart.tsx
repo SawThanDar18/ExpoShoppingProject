@@ -4,10 +4,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width, height } = Dimensions.get('window');
 
-export default function notification() {
+export default function cart() {
   return (
     <SafeAreaView style={styles.container}>
-          <Text>Notification Screen</Text>
+          <Text>Cart Screen</Text>
         </SafeAreaView>
   )
 }

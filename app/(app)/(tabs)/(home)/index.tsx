@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
@@ -17,6 +17,8 @@ import Category from "@/components/shop/Category";
 import Product from "@/components/shop/Product";
 import Title from "@/components/shop/Title";
 import { categories, products } from "@/data";
+import { useAppDispatch } from "@/hooks/useRedux";
+import { setProduct } from "@/providers/redux/productSlice";
 import { useScrollToTop } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
@@ -50,6 +52,20 @@ export default function HomeScreen() {
     }
   }
 
+  const router = useRouter();
+
+  // const goToDetail = (id: number) => {
+  //  // router.navigate(`/${id}`);
+  //   router.navigate(`/detail`);
+  // }
+
+  //redux
+  const dispatch = useAppDispatch();
+  const saveProductToRedux = (item: any) => {
+    dispatch(setProduct(item));
+    router.navigate(`/detail`);
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -68,7 +84,7 @@ export default function HomeScreen() {
             placeholder={blurhash}
           />
         </Pressable>
-        <Pressable>
+        <Pressable onPress={() => router.navigate("/cart")}>
           <Cart />
         </Pressable>
       </View>
@@ -108,7 +124,7 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
             data={data[selectedCategory as keyof typeof products]}
-            renderItem={({ item }) => <Product {...item} />}
+            renderItem={({ item }) => <Product {...item} onCall={() => saveProductToRedux(item)}/>}
           />
         </View>
         <Text>{""}</Text>
@@ -120,7 +136,7 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
             data={data[selectedCategory as keyof typeof products]}
-            renderItem={({ item }) => <Product {...item} />}
+            renderItem={({ item }) => <Product {...item} onCall={() => saveProductToRedux(item)}/>}
           />
         </View>
       </ScrollView>

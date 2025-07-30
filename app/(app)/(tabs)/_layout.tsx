@@ -41,10 +41,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="notification"
+        name="cart"
         options={{
-          title: 'Notification',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="bell" color={color} />,
+          title: 'Cart',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cart" color={color} />,
         }}
       />
       <Tabs.Screen
