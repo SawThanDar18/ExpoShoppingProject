@@ -16,9 +16,12 @@ import Cart from "@/components/shop/Cart";
 import Category from "@/components/shop/Category";
 import Product from "@/components/shop/Product";
 import Title from "@/components/shop/Title";
-import { categories, products } from "@/data";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { setProduct } from "@/providers/redux/productSlice";
+import { categories } from "@/data";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import {
+  fetchProducts,
+  selectAllProducts,
+} from "@/providers/redux/productSliceForAPI";
 import { useScrollToTop } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
@@ -28,20 +31,10 @@ const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-  const [selectedCategory, setSelectedCategory] = useState("Men");
+  const  navigation = useNavigation();
+  const [selectedCategory, setSelectedCategory] = useState("uuid1");
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [navigation]);
-
-  const onSelectCategory = (name: string) => {
-    setSelectedCategory(name);
-  };
-
-  const [data, setData] = useState(products);
+  //const [data, setData] = useState(products);
 
   const scrollRef = useRef<ScrollView>(null);
   useScrollToTop(scrollRef);
@@ -50,7 +43,7 @@ export default function HomeScreen() {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ y: 0, animated: true });
     }
-  }
+  };
 
   const router = useRouter();
 
@@ -61,9 +54,37 @@ export default function HomeScreen() {
 
   //redux
   const dispatch = useAppDispatch();
-  const saveProductToRedux = (item: any) => {
-    dispatch(setProduct(item));
-    router.navigate(`/detail`);
+  const products = useAppSelector(selectAllProducts);
+  const productsLoading = useAppSelector((state) => state.products.loading);
+  // const categories: CategoryType[] = useAppSelector(
+  //   (state) => state.requiredInfo.categories
+  // );
+  const productLists = products.filter(
+    (product) => product.categories_id === selectedCategory
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+    dispatch(fetchProducts());
+  }, [navigation]);
+
+  if (productsLoading) {
+    return <Text>Loading....</Text>
+  }
+
+  const onSelectCategory = (name: string) => {
+    setSelectedCategory(name);
+  };
+
+  const saveProductToRedux = (id: string) => {
+    //dispatch(setProduct(item));
+    //router.navigate(`/detail`);
+    router.push({
+      pathname: "/detail",
+      params: { id }
+    });
   };
 
   return (
@@ -123,8 +144,10 @@ export default function HomeScreen() {
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
-            data={data[selectedCategory as keyof typeof products]}
-            renderItem={({ item }) => <Product {...item} onCall={() => saveProductToRedux(item)}/>}
+            data={productLists}
+            renderItem={({ item }) => (
+              <Product {...item} onCall={() => saveProductToRedux(item.id)} />
+            )}
           />
         </View>
         <Text>{""}</Text>
@@ -135,10 +158,12 @@ export default function HomeScreen() {
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
-            data={data[selectedCategory as keyof typeof products]}
-            renderItem={({ item }) => <Product {...item} onCall={() => saveProductToRedux(item)}/>}
+            data={productLists}
+            renderItem={({ item }) => (
+              <Product {...item} onCall={() => saveProductToRedux(item.id)} />
+            )}
           />
-          <View style={{ marginBottom: 100 }}/>
+          <View style={{ marginBottom: 100 }} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -150,7 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 16,
-    marginRight: 16
+    marginRight: 16,
   },
   image: {
     width: 50,

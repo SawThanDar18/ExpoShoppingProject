@@ -1,3 +1,4 @@
+import { API_URL } from "@/config";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import {
@@ -9,7 +10,7 @@ import {
 } from "react-native";
 
 type ProductProps = {
-  id: number;
+  id: string;
   brand: string;
   title: string;
   star: number;
@@ -37,7 +38,7 @@ export default function Product({
     <View style={styles.container}>
       <Pressable onPress={onCall}>
         <ImageBackground
-          source={image}
+          source={{uri: API_URL+image}}
           style={styles.imageView}
           imageStyle={styles.image}
           resizeMode="cover"

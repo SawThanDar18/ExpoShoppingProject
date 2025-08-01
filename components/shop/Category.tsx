@@ -5,10 +5,10 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
-export default function Category({id, name, image, onSelect, select}: { id: number; name: string; image: any; onSelect: (name: string) => void; select: string }) {
+export default function Category({id, name, image, onSelect, select}: { id: string; name: string; image: any; onSelect: (name: string) => void; select: string }) {
   return (
       <Pressable style={styles.container} onPress={() => {
-        onSelect(name);
+        onSelect(id);
       }}>
       <Image
         source={image}

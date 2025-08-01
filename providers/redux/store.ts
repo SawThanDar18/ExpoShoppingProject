@@ -1,7 +1,7 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-import productReducer from "@/providers/redux/productSlice";
+import productReducer from "@/providers/redux/productSliceForAPI";
 //import { apiSlice } from "@/providers/redux/query/apiSlice";
 
 // export const store = configureStore({

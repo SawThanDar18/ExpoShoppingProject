@@ -26,18 +26,18 @@ const c3 = require("@/assets/images/shop/c3.png");
 // const p4 = require("@/assets/images/shop/p4.png");
 
 export const categories = [
-  { id: 1, name: "Men", image: Men },
-  { id: 2, name: "Women", image: Woman },
-  { id: 3, name: "Teens", image: Teen },
-  { id: 4, name: "Kids", image: Kid },
-  { id: 5, name: "Babies", image: Baby },
-  { id: 6, name: "Pets", image: Pet },
-  { id: 7, name: "Women", image: Woman },
-  { id: 8, name: "Men", image: Men },
-  { id: 9, name: "Teens", image: Teen },
-  { id: 10, name: "Kids", image: Kid },
-  { id: 11, name: "Babies", image: Baby },
-  { id: 12, name: "Pets", image: Pet },
+  { id: "uuid1", name: "Men", image: Men },
+  { id: "uuid2", name: "Women", image: Woman },
+  { id: "uuid3", name: "Teens", image: Teen },
+  { id: "uuid4", name: "Kids", image: Kid },
+  { id: "uuid5", name: "Babies", image: Baby },
+  { id: "uuid6", name: "Pets", image: Pet },
+  { id: "uuid7", name: "Women", image: Woman },
+  { id: "uuid8", name: "Men", image: Men },
+  { id: "uuid9", name: "Teens", image: Teen },
+  { id: "uuid10", name: "Kids", image: Kid },
+  { id: "uuid11", name: "Babies", image: Baby },
+  { id: "uuid12", name: "Pets", image: Pet },
 ];
 
 export const products = {
